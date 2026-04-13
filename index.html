@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Helvetia Himalayas | Futuristic Web Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Space Grotesk', system-ui, -apple-system, monospace;
+      background: #0A0A0F;
+      color: #EDEDF0;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-padding-top: 85px;
+    }
+
+    @media (min-width: 768px) {
+      html {
+        font-size: 18px;
+      }
+    }
+
+    /* Vibrant color palette */
+    :root {
+      --teal-primary: #0F6B6B;
+      --teal-bright: #1C9E9E;
+      --teal-glow: #2BBDBD;
+      --electric-blue: #3B82F6;
+      --neon-purple: #8B5CF6;
+      --vibrant-coral: #FF6B4A;
+      --dark-bg: #0A0A0F;
+      --card-bg: rgba(18, 18, 26, 0.8);
+      --card-border: rgba(28, 158, 158, 0.2);
+      --text-primary: #F0F0F5;
+      --text-secondary: #A0A0B0;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Animated Background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(15, 107, 107, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(255, 107, 74, 0.08) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    /* Floating particles animation */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      background: rgba(28, 158, 158, 0.4);
+      border-radius: 50%;
+      animation: floatParticle linear infinite;
+    }
+
+    @keyframes floatParticle {
+      0% {
+        transform: translateY(100vh) translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.6;
+      }
+      90% {
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(50px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Navigation */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(10, 10, 15, 0.9);
+      backdrop-filter: blur(12px);
+      transition: all 0.3s ease;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(28, 158, 158, 0.3);
+    }
+
+    .navbar.scrolled {
+      background: rgba(10, 10, 15, 0.98);
+      border-bottom-color: var(--teal-bright);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+
+    .logo-img {
+      height: 48px;
+      width: auto;
+      max-width: 48px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 8px rgba(28, 158, 158, 0.5));
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .logo-main {
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.2px;
+      background: linear-gradient(135deg, var(--teal-bright) 0%, var(--electric-blue) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .logo-small {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: var(--text-primary);
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(135deg, var(--teal-bright), var(--electric-blue));
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--teal-bright);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+      background: transparent;
+      border: none;
+    }
+
+    .hamburger span {
+      width: 26px;
+      height: 2px;
+      background: var(--teal-bright);
+      border-radius: 3px;
+      transition: 0.2s;
+    }
+
+    /* Buttons with glow effects */
+    .btn-primary {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--teal-primary) 0%, var(--teal-bright) 100%);
+      color: white;
+      font-weight: 600;
+      padding: 0.8rem 2rem;
+      border-radius: 40px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(28, 158, 158, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.5s, height 0.5s;
+    }
+
+    .btn-primary:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px rgba(28, 158, 158, 0.5);
+    }
+
+    .btn-outline {
+      display: inline-block;
+      background: transparent;
+      border: 2px solid var(--teal-bright);
+      color: var(--teal-bright);
+      font-weight: 600;
+      padding: 0.75rem 2rem;
+      border-radius: 40px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline:hover {
+      background: linear-gradient(135deg, var(--teal-primary), var(--teal-bright));
+      color: white;
+      border-color: transparent;
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(28, 158, 158, 0.4);
+    }
+
+    .btn-large {
+      padding: 1rem 2.5rem;
+      font-size: 1.05rem;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    section {
+      padding: 5rem 0;
+    }
+
+    /* Hero Section with animations */
+    .hero {
+      text-align: center;
+      padding: 4rem 0 5rem;
+      position: relative;
+    }
+
+    .glow-text {
+      animation: glowPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { text-shadow: 0 0 20px rgba(28, 158, 158, 0.3); }
+      50% { text-shadow: 0 0 40px rgba(28, 158, 158, 0.6); }
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      line-height: 1.2;
+      font-weight: 800;
+      margin-bottom: 1.25rem;
+      animation: fadeInDown 0.8s ease;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (min-width: 768px) {
+      .hero h1 {
+        font-size: 4rem;
+      }
+    }
+
+    .hero-highlight {
+      background: linear-gradient(135deg, var(--teal-bright) 0%, var(--electric-blue) 50%, var(--neon-purple) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: gradientShift 4s ease infinite;
+      background-size: 200% auto;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .hero-sub {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .trust-badge {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      animation: fadeInUp 1.2s ease;
+    }
+
+    .trust-badge span {
+      background: rgba(28, 158, 158, 0.1);
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      border: 1px solid rgba(28, 158, 158, 0.2);
+    }
+
+    /* Section Titles */
+    .section-title {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      text-align: center;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 70px;
+      height: 3px;
+      background: linear-gradient(135deg, var(--teal-bright), var(--electric-blue));
+      margin: 0.8rem auto 0;
+      border-radius: 3px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-secondary);
+      margin-bottom: 3rem;
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Pricing Cards */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+
+    .pricing-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border-radius: 28px;
+      padding: 2rem;
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      border: 1px solid var(--card-border);
+      position: relative;
+      overflow: visible;
+    }
+
+    .pricing-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(28, 158, 158, 0.1), transparent);
+      transition: left 0.5s;
+    }
+
+    .pricing-card:hover::before {
+      left: 100%;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(28, 158, 158, 0.5);
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    .pricing-card.featured {
+      border: 2px solid var(--teal-bright);
+      background: linear-gradient(135deg, rgba(18, 18, 26, 0.95), rgba(28, 158, 158, 0.1));
+      transform: scale(1.02);
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--teal-bright), var(--electric-blue));
+      color: white;
+      padding: 0.35rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      white-space: nowrap;
+      z-index: 10;
+      box-shadow: 0 0 15px rgba(28, 158, 158, 0.5);
+      letter-spacing: 0.5px;
+    }
+
+    .pricing-card h3 {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+      margin-top: 0.5rem;
+    }
+
+    .pricing-price {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--teal-bright), var(--electric-blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin: 0.75rem 0 0.5rem;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin: 1.5rem 0;
+    }
+
+    .feature-list li {
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+    }
+
+    .feature-list li::before {
+      content: "✓";
+      color: var(--teal-bright);
+      font-weight: bold;
+    }
+
+    .btn-pricing {
+      display: block;
+      text-align: center;
+      background: linear-gradient(135deg, var(--teal-primary), var(--teal-bright));
+      color: white;
+      padding: 0.8rem;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 1.5rem;
+      transition: all 0.3s;
+    }
+
+    .btn-pricing:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 15px rgba(28, 158, 158, 0.4);
+    }
+
+    /* Comparison Table */
+    .comparison-wrapper {
+      overflow-x: auto;
+      margin: 3rem 0 1rem;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--card-bg);
+      border-radius: 24px;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 1rem 1.2rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(28, 158, 158, 0.2);
+    }
+
+    .comparison-table th {
+      background: linear-gradient(135deg, rgba(28, 158, 158, 0.2), rgba(59, 130, 246, 0.1));
+      font-weight: 700;
+      color: var(--teal-bright);
+    }
+
+    .comparison-table tr:hover td {
+      background: rgba(28, 158, 158, 0.05);
+    }
+
+    .check-yes {
+      color: var(--teal-bright);
+      font-weight: bold;
+    }
+
+    .comparison-title {
+      text-align: center;
+      font-size: 1.4rem;
+      margin: 2rem 0 1rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    /* Custom Solutions with Modern Icons */
+    .custom-solutions {
+      background: linear-gradient(135deg, rgba(28, 158, 158, 0.1), rgba(59, 130, 246, 0.05));
+      border-radius: 32px;
+      padding: 3rem;
+      border: 1px solid rgba(28, 158, 158, 0.2);
+    }
+
+    .custom-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .custom-item {
+      text-align: center;
+      padding: 1.5rem;
+      background: rgba(18, 18, 26, 0.6);
+      border-radius: 24px;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(28, 158, 158, 0.1);
+    }
+
+    .custom-item:hover {
+      transform: translateY(-5px);
+      background: rgba(28, 158, 158, 0.1);
+      border-color: var(--teal-bright);
+    }
+
+    .custom-icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s;
+    }
+
+    .custom-item:hover .custom-icon {
+      transform: scale(1.1);
+    }
+
+    .custom-icon svg {
+      width: 48px;
+      height: 48px;
+      stroke: var(--teal-bright);
+      stroke-width: 1.5;
+      fill: none;
+    }
+
+    .custom-item h4 {
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    .custom-item p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+
+    /* Process Steps */
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+    }
+
+    .step-item {
+      flex: 1;
+      min-width: 200px;
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid var(--card-border);
+    }
+
+    .step-item:hover {
+      transform: translateY(-5px);
+      border-color: var(--teal-bright);
+    }
+
+    .step-number {
+      width: 52px;
+      height: 52px;
+      background: linear-gradient(135deg, var(--teal-primary), var(--teal-bright));
+      border-radius: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin: 0 auto 1rem;
+      box-shadow: 0 0 15px rgba(28, 158, 158, 0.4);
+    }
+
+    /* Maintenance */
+    .maintenance-card {
+      background: linear-gradient(135deg, #0F0F15 0%, #1A1A2E 100%);
+      border-radius: 28px;
+      padding: 3rem 2rem;
+      text-align: center;
+      border: 1px solid rgba(28, 158, 158, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .maintenance-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(28,158,158,0.1) 0%, transparent 70%);
+      animation: spin 20s infinite linear;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .maintenance-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .maintenance-pricing {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      margin: 1.5rem 0;
+    }
+
+    .maintenance-pricing div {
+      background: rgba(28, 158, 158, 0.15);
+      padding: 0.75rem 1.5rem;
+      border-radius: 60px;
+      border: 1px solid rgba(28, 158, 158, 0.3);
+    }
+
+    /* Contact Form */
+    .contact-form {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border-radius: 32px;
+      padding: 2.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+      border: 1px solid var(--card-border);
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 1rem 1.2rem;
+      border-radius: 16px;
+      border: 1.5px solid rgba(28, 158, 158, 0.3);
+      font-family: inherit;
+      background: rgba(10, 10, 15, 0.8);
+      color: var(--text-primary);
+      transition: all 0.3s;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--teal-bright);
+      box-shadow: 0 0 0 4px rgba(28, 158, 158, 0.2);
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    /* Footer */
+    footer {
+      background: #050508;
+      padding: 3rem 0 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(28, 158, 158, 0.2);
+    }
+
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--teal-bright);
+    }
+
+    @media (max-width: 767px) {
+      .hamburger {
+        display: flex;
+      }
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        flex-direction: column;
+        background: rgba(10, 10, 15, 0.98);
+        width: 80%;
+        height: calc(100vh - 70px);
+        padding: 2rem;
+        gap: 1.5rem;
+        transition: left 0.3s ease;
+        z-index: 999;
+        backdrop-filter: blur(20px);
+      }
+      .nav-links.active {
+        left: 0;
+      }
+      .steps {
+        flex-direction: column;
+      }
+      .pricing-card.featured {
+        transform: scale(1);
+      }
+      .button-group {
+        gap: 0.8rem;
+      }
+      .btn-primary, .btn-outline {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="particles" id="particles"></div>
+
+<nav class="navbar" id="navbar">
+  <div class="container nav-container">
+    <a href="#" class="logo">
+      <img src="logo.png" alt="Helvetia Himalayas" class="logo-img" onerror="this.onerror=null; this.src='https://placehold.co/48x48/0F6B6B/white?text=HH'; this.style.borderRadius='12px'">
+      <div class="logo-text">
+        <span class="logo-main">HELVETIA HIMALAYAS</span>
+        <span class="logo-small">consultancy services</span>
+      </div>
+    </a>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#custom">Custom</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <section id="home">
+    <div class="container hero">
+      <h1>Digital solutions that<br><span class="hero-highlight glow-text">elevate your business</span></h1>
+      <div class="hero-sub">Professional websites, custom web applications, and digital platforms.<br>Transparent pricing from $60 to $250 — plus fully tailored solutions.</div>
+      <div class="button-group">
+        <a href="#contact" class="btn-primary btn-large">Start a Project →</a>
+        <a href="#pricing" class="btn-outline">View Pricing</a>
+      </div>
+      <div class="trust-badge"><span>✓ 50+ projects delivered</span><span>✓ 98% client satisfaction</span><span>✓ Ongoing support</span></div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="container">
+      <h2 class="section-title">Simple, transparent pricing</h2>
+      <p class="section-subtitle">Choose the perfect package for your business stage — from a quick online presence to a full-featured website.</p>
+      <div class="pricing-grid">
+        <div class="pricing-card"><h3>The One-Pager</h3><div class="pricing-price">$60 <small>one-time</small></div><div class="pricing-desc" style="color:var(--text-secondary)">Perfect for individuals, portfolios, or quick landing pages.</div><ul class="feature-list"><li>Single scrollable page layout</li><li>Mobile optimized</li><li>Social media links integration</li><li>Call-to-action button</li><li>Basic bio / intro section</li><li>Fast 48h turnaround</li></ul><a href="#contact" class="btn-pricing">Get Started →</a></div>
+        <div class="pricing-card featured"><div class="popular-badge">🔥 MOST POPULAR</div><h3>The Business Basic</h3><div class="pricing-price">$150 <small>one-time</small></div><div class="pricing-desc" style="color:var(--text-secondary)">New small businesses needing a professional face.</div><ul class="feature-list"><li>3–5 custom pages</li><li>Mobile responsive design</li><li>Google Maps integration</li><li>Standard SEO</li><li>Dedicated contact form</li><li>Testimonials section</li></ul><a href="#contact" class="btn-pricing">Get Started →</a></div>
+        <div class="pricing-card"><h3>The Pro Starter</h3><div class="pricing-price">$250 <small>one-time</small></div><div class="pricing-desc" style="color:var(--text-secondary)">Established businesses or early-stage shops.</div><ul class="feature-list"><li>Up to 10 pages</li><li>Blog / News section (CMS)</li><li>Basic E-commerce ready (up to 5 products)</li><li>Payment gateway integration</li><li>Premium speed optimization</li><li>SSL certificate & security</li></ul><a href="#contact" class="btn-pricing">Get Started →</a></div>
+      </div>
+	  <div class="comparison-title"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--teal-bright)" stroke-width="1.5" style="display: inline-block; vertical-align: middle; margin-right: 8px;"><path d="M3 6h18v12H3zM8 10h8M8 14h5"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg> Compare features at a glance</div>      <div class="comparison-wrapper"><table class="comparison-table"><thead><tr><th>Feature</th><th>One-Pager ($60)</th><th>Business Basic ($150)</th><th>Pro Starter ($250)</th></tr></thead><tbody><tr><td>Number of Pages</td><td>1</td><td>3–5</td><td>Up to 10</td></tr><tr><td>Mobile Responsive</td><td class="check-yes">✓</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr><tr><td>Contact Form</td><td>Simple Button</td><td>Standard Form</td><td>Advanced/Custom</td></tr><tr><td>SEO Ready</td><td>Basic</td><td>Standard</td><td>Advanced</td></tr><tr><td>Google Maps</td><td>—</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr><tr><td>E-commerce</td><td>—</td><td>—</td><td class="check-yes">✓ (Up to 5 items)</td></tr><tr><td>Blog System</td><td>—</td><td>—</td><td class="check-yes">✓</td></tr><tr><td>SSL Certificate</td><td>—</td><td>—</td><td class="check-yes">✓</td></tr></tbody></table></div>
+    </div>
+  </section>
+
+  <section id="custom"><div class="container"><div class="custom-solutions"><h3 style="color:var(--text-primary);text-align:center">Need something completely custom?</h3><p style="text-align:center;max-width:650px;margin:0 auto;color:var(--text-secondary)">We also build tailored web applications and complex digital platforms — beyond standard websites.</p><div class="custom-grid"><div class="custom-item"><div class="custom-icon"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M3 3v18h18V3H3zm16 16H5V5h14v14z"/><path d="M8 8h8v2H8zM8 12h6v2H8zM8 16h4v2H8z"/></svg></div><h4>Business Dashboards</h4><p>Real-time analytics, reporting, and data visualization tools.</p></div><div class="custom-item"><div class="custom-icon"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M19 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><path d="M16 2v4M8 2v4M3 10h18"/><circle cx="12" cy="15" r="1"/><circle cx="16" cy="15" r="1"/><circle cx="8" cy="15" r="1"/></svg></div><h4>Booking Systems</h4><p>Appointment scheduling, resource management, and calendar integrations.</p></div><div class="custom-item"><div class="custom-icon"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg></div><h4>Client Portals</h4><p>Secure login areas for documents, invoices, and communications.</p></div><div class="custom-item"><div class="custom-icon"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M4 4h16v16H4z"/><path d="M9 9h6v6H9z"/><path d="M15 9l4-4M9 15l-4 4"/></svg></div><h4>API Integrations</h4><p>Connect with CRMs, payment processors, and marketing tools.</p></div><div class="custom-item"><div class="custom-icon"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M3 6h18v12H3z"/><path d="M8 10h8M8 14h5"/><circle cx="18" cy="10" r="1"/><circle cx="18" cy="14" r="1"/></svg></div><h4>Advanced E‑commerce</h4><p>Full-featured online stores with unlimited products.</p></div><div class="custom-item"><div class="custom-icon"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M12 6v6l4 2"/></svg></div><h4>Web Applications</h4><p>Scalable, feature-rich apps for your unique business processes.</p></div></div><div style="text-align:center;margin-top:2rem;"><a href="#contact" class="btn-primary">Discuss Your Custom Project →</a></div></div></div></section>
+
+  <section id="process"><div class="container"><h2 class="section-title">How we work</h2><p class="section-subtitle">A collaborative, transparent process from idea to launch.</p><div class="steps"><div class="step-item"><div class="step-number">1</div><h4>Discovery Call</h4><p>We learn about your business, goals, and requirements.</p></div><div class="step-item"><div class="step-number">2</div><h4>Design & Proposal</h4><p>We create design mockups and a clear proposal.</p></div><div class="step-item"><div class="step-number">3</div><h4>Development</h4><p>Our team builds your solution with regular updates.</p></div><div class="step-item"><div class="step-number">4</div><h4>Launch & Support</h4><p>We deploy, test thoroughly, and offer ongoing maintenance.</p></div></div></div></section>
+
+  <section id="maintenance"><div class="container"><div class="maintenance-card"><h2>Ongoing maintenance & support</h2><p style="opacity:0.9;max-width:600px;margin:0 auto;">Keep your website secure, fast, and up-to-date with our flexible plans.</p><div class="maintenance-pricing"><div><strong>$99</strong> / month</div><div><strong>$990</strong> / year <span style="font-size:0.8rem;">(2 months free)</span></div></div><div style="display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin:1.5rem 0;"><span>✓ Uptime monitoring</span><span>✓ Security updates</span><span>✓ Content changes</span><span>✓ 24hr support</span><span>✓ Weekly backups</span></div><a href="#contact" class="btn-primary" style="background:white;color:#0F6B6B;box-shadow:none;">Inquire about maintenance</a></div></div></section>
+
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Let's discuss your project</h2>
+      <p class="section-subtitle">Tell us about your needs — websites, custom applications, or anything in between.</p>
+      
+      <div class="contact-form">
+        <form action="https://formsubmit.co/helvatia.himalayas@outlook.com" method="POST">
+          <!-- Honeypot spam protection -->
+          <input type="text" name="_honey" style="display:none">
+          <!-- Disable captcha (optional) -->
+          <input type="hidden" name="_captcha" value="false">
+          <!-- Redirect after submission (optional - shows success message) -->
+          <input type="hidden" name="_next" value="https://helvetiahimalayas.com/thank-you.html">
+          <!-- Subject line for email -->
+          <input type="hidden" name="_subject" value="New Website Inquiry from Helvetia Himalayas">
+          
+          <div class="form-group">
+            <label for="name">Full name *</label>
+            <input type="text" id="name" name="name" required placeholder="Alex Morgan">
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email address *</label>
+            <input type="email" id="email" name="email" required placeholder="alex@business.com">
+          </div>
+          
+          <div class="form-group">
+            <label for="business">Business name</label>
+            <input type="text" id="business" name="business" placeholder="Your company name">
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Tell us about your project *</label>
+            <textarea id="message" name="message" rows="5" placeholder="What type of website or application do you need? Any specific features, timeline, or budget considerations?" required></textarea>
+          </div>
+          
+          <button type="submit" class="btn-primary" style="width:100%;padding:1rem;">Send Inquiry →</button>
+          <p style="font-size:0.75rem;margin-top:1.2rem;text-align:center;color:var(--text-secondary)">We'll respond within 24 hours. No spam, just honest consultation.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="container"><div class="footer-content" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:2rem;margin-bottom:2rem"><div><div style="font-weight:800;font-size:1.1rem;color:white;margin-bottom:0.5rem;">HELVETIA HIMALAYAS</div><p style="font-size:0.85rem;color:var(--text-secondary)">Consultancy Services — Digital solutions for modern businesses</p></div><div class="footer-links" style="display:flex;gap:3rem;flex-wrap:wrap"><div><a href="#home">Home</a><br><a href="#pricing">Pricing</a><br><a href="#custom">Custom Solutions</a></div><div><a href="#process">Process</a><br><a href="#contact">Contact</a><br><a href="#maintenance">Maintenance</a></div></div></div><div class="footer-bottom" style="text-align:center;padding-top:2rem;border-top:1px solid rgba(28,158,158,0.2)"><p>© 2026 Helvetia Himalayas Consultancy Services — Professional websites & web applications</p><p style="margin-top:0.5rem;font-size:0.75rem;color:var(--text-secondary)">Custom development | Ongoing support | Scalable solutions</p></div></div></footer>
+
+<script>
+  function createParticles() {
+    const container = document.getElementById('particles');
+    for (let i = 0; i < 50; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      const size = Math.random() * 4 + 2;
+      particle.style.width = size + 'px';
+      particle.style.height = size + 'px';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.animationDuration = Math.random() * 15 + 8 + 's';
+      particle.style.animationDelay = Math.random() * 10 + 's';
+      particle.style.opacity = Math.random() * 0.4 + 0.2;
+      container.appendChild(particle);
+    }
+  }
+  createParticles();
+
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 20); });
+  
+  const hamburger = document.getElementById('hamburgerBtn');
+  const navLinks = document.getElementById('navLinks');
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navLinks.classList.toggle('active');
+      const spans = hamburger.querySelectorAll('span');
+      if (navLinks.classList.contains('active')) {
+        spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+        spans[1].style.opacity = '0';
+        spans[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
+      } else {
+        spans.forEach(s => { s.style.transform = 'none'; s.style.opacity = '1'; });
+      }
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+      document.querySelectorAll('.hamburger span').forEach(s => { s.style.transform = 'none'; s.style.opacity = '1'; });
+    }));
+  }
+
+  document.getElementById('consultForm')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('name')?.value.trim();
+    const email = document.getElementById('email')?.value.trim();
+    const message = document.getElementById('message')?.value.trim();
+    if (!name || !email || !message) return alert('Please fill in name, email, and project details.');
+    if (!email.includes('@')) return alert('Please enter a valid email address.');
+    alert(`Thank you ${name}! We've received your inquiry and will respond within 24 hours.`);
+    this.reset();
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (targetId === "#" || targetId === "") return;
+      const target = document.querySelector(targetId);
+      if (target) { e.preventDefault(); window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' }); history.pushState(null, null, targetId); }
+    });
+  });
+</script>
+</body>
+</html>
