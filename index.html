@@ -104,6 +104,17 @@
       }
     }
 
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
     /* Navigation */
     .navbar {
       position: sticky;
@@ -216,7 +227,7 @@
       transition: 0.2s;
     }
 
-    /* Buttons with glow effects */
+    /* Buttons */
     .btn-primary {
       display: inline-block;
       background: linear-gradient(135deg, var(--teal-primary) 0%, var(--teal-bright) 100%);
@@ -295,7 +306,7 @@
       padding: 5rem 0;
     }
 
-    /* Hero Section with animations */
+    /* Hero Section */
     .hero {
       text-align: center;
       padding: 4rem 0 5rem;
@@ -468,7 +479,6 @@
       white-space: nowrap;
       z-index: 10;
       box-shadow: 0 0 15px rgba(28, 158, 158, 0.5);
-      letter-spacing: 0.5px;
     }
 
     .pricing-card h3 {
@@ -570,7 +580,7 @@
       font-weight: 600;
     }
 
-    /* Custom Solutions with Modern Icons */
+    /* Custom Solutions */
     .custom-solutions {
       background: linear-gradient(135deg, rgba(28, 158, 158, 0.1), rgba(59, 130, 246, 0.05));
       border-radius: 32px;
@@ -583,16 +593,6 @@
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 2rem;
       margin-top: 2rem;
-    }
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateX(-50%) translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-      }
     }
 
     .custom-item {
@@ -610,32 +610,24 @@
       border-color: var(--teal-bright);
     }
 
-    .custom-icon {
-      width: 56px;
-      height: 56px;
-      margin: 0 auto 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.3s;
-    }
-
-    .custom-item:hover .custom-icon {
-      transform: scale(1.1);
-    }
-
     .custom-icon svg {
       width: 48px;
       height: 48px;
       stroke: var(--teal-bright);
       stroke-width: 1.5;
       fill: none;
+      transition: transform 0.3s;
+    }
+
+    .custom-item:hover .custom-icon svg {
+      transform: scale(1.1);
     }
 
     .custom-item h4 {
       color: var(--text-primary);
       margin-bottom: 0.5rem;
       font-size: 1.2rem;
+      margin-top: 0.5rem;
     }
 
     .custom-item p {
@@ -680,6 +672,10 @@
       font-size: 1.3rem;
       margin: 0 auto 1rem;
       box-shadow: 0 0 15px rgba(28, 158, 158, 0.4);
+    }
+
+    .step-item h4 {
+      margin-bottom: 0.5rem;
     }
 
     /* Maintenance */
@@ -740,6 +736,17 @@
       border: 1px solid var(--card-border);
     }
 
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
     input, textarea {
       width: 100%;
       padding: 1rem 1.2rem;
@@ -757,19 +764,26 @@
       box-shadow: 0 0 0 4px rgba(28, 158, 158, 0.2);
     }
 
-    label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      color: var(--text-primary);
-    }
-
     /* Footer */
     footer {
       background: #050508;
       padding: 3rem 0 2rem;
       margin-top: 2rem;
       border-top: 1px solid rgba(28, 158, 158, 0.2);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 3rem;
+      flex-wrap: wrap;
     }
 
     .footer-links a {
@@ -780,6 +794,14 @@
 
     .footer-links a:hover {
       color: var(--teal-bright);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(28, 158, 158, 0.2);
+      font-size: 0.8rem;
+      color: var(--text-secondary);
     }
 
     @media (max-width: 767px) {
@@ -815,6 +837,13 @@
       .btn-primary, .btn-outline {
         padding: 0.6rem 1.5rem;
         font-size: 0.9rem;
+      }
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      .footer-links {
+        justify-content: center;
       }
     }
   </style>
@@ -867,15 +896,53 @@
         <div class="pricing-card featured"><div class="popular-badge">🔥 MOST POPULAR</div><h3>The Business Basic</h3><div class="pricing-price">$150 <small>one-time</small></div><div class="pricing-desc" style="color:var(--text-secondary)">New small businesses needing a professional face.</div><ul class="feature-list"><li>3–5 custom pages</li><li>Mobile responsive design</li><li>Google Maps integration</li><li>Standard SEO</li><li>Dedicated contact form</li><li>Testimonials section</li></ul><a href="#contact" class="btn-pricing">Get Started →</a></div>
         <div class="pricing-card"><h3>The Pro Starter</h3><div class="pricing-price">$250 <small>one-time</small></div><div class="pricing-desc" style="color:var(--text-secondary)">Established businesses or early-stage shops.</div><ul class="feature-list"><li>Up to 10 pages</li><li>Blog / News section (CMS)</li><li>Basic E-commerce ready (up to 5 products)</li><li>Payment gateway integration</li><li>Premium speed optimization</li><li>SSL certificate & security</li></ul><a href="#contact" class="btn-pricing">Get Started →</a></div>
       </div>
-	  <div class="comparison-title"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--teal-bright)" stroke-width="1.5" style="display: inline-block; vertical-align: middle; margin-right: 8px;"><path d="M3 6h18v12H3zM8 10h8M8 14h5"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg> Compare features at a glance</div>      <div class="comparison-wrapper"><table class="comparison-table"><thead><tr><th>Feature</th><th>One-Pager ($60)</th><th>Business Basic ($150)</th><th>Pro Starter ($250)</th></tr></thead><tbody><tr><td>Number of Pages</td><td>1</td><td>3–5</td><td>Up to 10</td></tr><tr><td>Mobile Responsive</td><td class="check-yes">✓</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr><tr><td>Contact Form</td><td>Simple Button</td><td>Standard Form</td><td>Advanced/Custom</td></tr><tr><td>SEO Ready</td><td>Basic</td><td>Standard</td><td>Advanced</td></tr><tr><td>Google Maps</td><td>—</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr><tr><td>E-commerce</td><td>—</td><td>—</td><td class="check-yes">✓ (Up to 5 items)</td></tr><tr><td>Blog System</td><td>—</td><td>—</td><td class="check-yes">✓</td></tr><tr><td>SSL Certificate</td><td>—</td><td>—</td><td class="check-yes">✓</td></tr></tbody></table></div>
+      <div class="comparison-title"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--teal-bright)" stroke-width="1.5" style="display: inline-block; vertical-align: middle; margin-right: 8px;"><path d="M3 6h18v12H3zM8 10h8M8 14h5"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg> Compare features at a glance</div>
+      <div class="comparison-wrapper"><table class="comparison-table"><thead><tr><th>Feature</th><th>One-Pager ($60)</th><th>Business Basic ($150)</th><th>Pro Starter ($250)</th></tr></thead><tbody><tr><td>Number of Pages</td><td>1</td><td>3–5</td><td>Up to 10</td></tr><tr><td>Mobile Responsive</td><td class="check-yes">✓</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr><tr><td>Contact Form</td><td>Simple (2-3 fields)</td><td>Standard Form</td><td>Advanced/Custom</td></tr><tr><td>SEO Ready</td><td>Basic</td><td>Standard</td><td>Advanced</td></tr><tr><td>Google Maps</td><td>—</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr><tr><td>E-commerce</td><td>—</td><td>—</td><td class="check-yes">✓ (Up to 5 items)</td></tr><tr><td>Blog System</td><td>—</td><td>—</td><td class="check-yes">✓</td></tr><tr><td>SSL Certificate</td><td>—</td><td>—</td><td class="check-yes">✓</td></tr></tbody></table></div>
     </div>
   </section>
 
-  <section id="custom"><div class="container"><div class="custom-solutions"><h3 style="color:var(--text-primary);text-align:center">Need something completely custom?</h3><p style="text-align:center;max-width:650px;margin:0 auto;color:var(--text-secondary)">We also build tailored web applications and complex digital platforms — beyond standard websites.</p><div class="custom-grid"><div class="custom-item"><div class="custom-icon"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M3 3v18h18V3H3zm16 16H5V5h14v14z"/><path d="M8 8h8v2H8zM8 12h6v2H8zM8 16h4v2H8z"/></svg></div><h4>Business Dashboards</h4><p>Real-time analytics, reporting, and data visualization tools.</p></div><div class="custom-item"><div class="custom-icon"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M19 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><path d="M16 2v4M8 2v4M3 10h18"/><circle cx="12" cy="15" r="1"/><circle cx="16" cy="15" r="1"/><circle cx="8" cy="15" r="1"/></svg></div><h4>Booking Systems</h4><p>Appointment scheduling, resource management, and calendar integrations.</p></div><div class="custom-item"><div class="custom-icon"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg></div><h4>Client Portals</h4><p>Secure login areas for documents, invoices, and communications.</p></div><div class="custom-item"><div class="custom-icon"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M4 4h16v16H4z"/><path d="M9 9h6v6H9z"/><path d="M15 9l4-4M9 15l-4 4"/></svg></div><h4>API Integrations</h4><p>Connect with CRMs, payment processors, and marketing tools.</p></div><div class="custom-item"><div class="custom-icon"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M3 6h18v12H3z"/><path d="M8 10h8M8 14h5"/><circle cx="18" cy="10" r="1"/><circle cx="18" cy="14" r="1"/></svg></div><h4>Advanced E‑commerce</h4><p>Full-featured online stores with unlimited products.</p></div><div class="custom-item"><div class="custom-icon"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M12 6v6l4 2"/></svg></div><h4>Web Applications</h4><p>Scalable, feature-rich apps for your unique business processes.</p></div></div><div style="text-align:center;margin-top:2rem;"><a href="#contact" class="btn-primary">Discuss Your Custom Project →</a></div></div></div></section>
+  <section id="custom">
+    <div class="container">
+      <div class="custom-solutions">
+        <h3 style="color:var(--text-primary);text-align:center">Need something completely custom?</h3>
+        <p style="text-align:center;max-width:650px;margin:0 auto;color:var(--text-secondary)">We also build tailored web applications and complex digital platforms — beyond standard websites.</p>
+        <div class="custom-grid">
+          <div class="custom-item"><div class="custom-icon"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M3 3v18h18V3H3zm16 16H5V5h14v14z"/><path d="M8 8h8v2H8zM8 12h6v2H8zM8 16h4v2H8z"/></svg></div><h4>Business Dashboards</h4><p>Real-time analytics, reporting, and data visualization tools.</p></div>
+          <div class="custom-item"><div class="custom-icon"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M19 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><path d="M16 2v4M8 2v4M3 10h18"/><circle cx="12" cy="15" r="1"/><circle cx="16" cy="15" r="1"/><circle cx="8" cy="15" r="1"/></svg></div><h4>Booking Systems</h4><p>Appointment scheduling, resource management, and calendar integrations.</p></div>
+          <div class="custom-item"><div class="custom-icon"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg></div><h4>Client Portals</h4><p>Secure login areas for documents, invoices, and communications.</p></div>
+          <div class="custom-item"><div class="custom-icon"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M4 4h16v16H4z"/><path d="M9 9h6v6H9z"/><path d="M15 9l4-4M9 15l-4 4"/></svg></div><h4>API Integrations</h4><p>Connect with CRMs, payment processors, and marketing tools.</p></div>
+          <div class="custom-item"><div class="custom-icon"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M3 6h18v12H3z"/><path d="M8 10h8M8 14h5"/><circle cx="18" cy="10" r="1"/><circle cx="18" cy="14" r="1"/></svg></div><h4>Advanced E‑commerce</h4><p>Full-featured online stores with unlimited products.</p></div>
+          <div class="custom-item"><div class="custom-icon"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M12 6v6l4 2"/></svg></div><h4>Web Applications</h4><p>Scalable, feature-rich apps for your unique business processes.</p></div>
+        </div>
+        <div style="text-align:center;margin-top:2rem;"><a href="#contact" class="btn-primary">Discuss Your Custom Project →</a></div>
+      </div>
+    </div>
+  </section>
 
-  <section id="process"><div class="container"><h2 class="section-title">How we work</h2><p class="section-subtitle">A collaborative, transparent process from idea to launch.</p><div class="steps"><div class="step-item"><div class="step-number">1</div><h4>Discovery Call</h4><p>We learn about your business, goals, and requirements.</p></div><div class="step-item"><div class="step-number">2</div><h4>Design & Proposal</h4><p>We create design mockups and a clear proposal.</p></div><div class="step-item"><div class="step-number">3</div><h4>Development</h4><p>Our team builds your solution with regular updates.</p></div><div class="step-item"><div class="step-number">4</div><h4>Launch & Support</h4><p>We deploy, test thoroughly, and offer ongoing maintenance.</p></div></div></div></section>
+  <section id="process">
+    <div class="container">
+      <h2 class="section-title">How we work</h2>
+      <p class="section-subtitle">A collaborative, transparent process from idea to launch.</p>
+      <div class="steps">
+        <div class="step-item"><div class="step-number">1</div><h4>Discovery Call</h4><p>We learn about your business, goals, and requirements.</p></div>
+        <div class="step-item"><div class="step-number">2</div><h4>Design & Proposal</h4><p>We create design mockups and a clear proposal.</p></div>
+        <div class="step-item"><div class="step-number">3</div><h4>Development</h4><p>Our team builds your solution with regular updates.</p></div>
+        <div class="step-item"><div class="step-number">4</div><h4>Launch & Support</h4><p>We deploy, test thoroughly, and offer ongoing maintenance.</p></div>
+      </div>
+    </div>
+  </section>
 
-  <section id="maintenance"><div class="container"><div class="maintenance-card"><h2>Ongoing maintenance & support</h2><p style="opacity:0.9;max-width:600px;margin:0 auto;">Keep your website secure, fast, and up-to-date with our flexible plans.</p><div class="maintenance-pricing"><div><strong>$99</strong> / month</div><div><strong>$990</strong> / year <span style="font-size:0.8rem;">(2 months free)</span></div></div><div style="display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin:1.5rem 0;"><span>✓ Uptime monitoring</span><span>✓ Security updates</span><span>✓ Content changes</span><span>✓ 24hr support</span><span>✓ Weekly backups</span></div><a href="#contact" class="btn-primary" style="background:white;color:#0F6B6B;box-shadow:none;">Inquire about maintenance</a></div></div></section>
+  <section id="maintenance">
+    <div class="container">
+      <div class="maintenance-card">
+        <h2>Ongoing maintenance & support</h2>
+        <p style="opacity:0.9;max-width:600px;margin:0 auto;">Keep your website secure, fast, and up-to-date with our flexible plans.</p>
+        <div class="maintenance-pricing"><div><strong>$99</strong> / month</div><div><strong>$990</strong> / year <span style="font-size:0.8rem;">(2 months free)</span></div></div>
+        <div style="display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin:1.5rem 0;"><span>✓ Uptime monitoring</span><span>✓ Security updates</span><span>✓ Content changes</span><span>✓ 24hr support</span><span>✓ Weekly backups</span></div>
+        <a href="#contact" class="btn-primary" style="background:white;color:#0F6B6B;box-shadow:none;">Inquire about maintenance</a>
+      </div>
+    </div>
+  </section>
 
   <section id="contact">
     <div class="container">
@@ -884,14 +951,11 @@
       
       <div class="contact-form">
         <form action="https://formsubmit.co/ajax/helvetia.himalayas@outlook.com" method="POST">
-          <!-- Honeypot spam protection -->
           <input type="text" name="_honey" style="display:none">
-          <!-- Disable captcha -->
           <input type="hidden" name="_captcha" value="false">
-          <!-- Redirect back to your website with success parameter -->
           <input type="hidden" name="_next" value="https://shalinipandurangan.github.io/Helvetia-Himalayas/?success=true">
-          <!-- Subject line for email -->
           <input type="hidden" name="_subject" value="New Website Inquiry from Helvetia Himalayas">
+          <input type="hidden" name="_template" value="table">
           
           <div class="form-group">
             <label for="name">Full name *</label>
@@ -921,11 +985,21 @@
   </section>
 </main>
 
-<footer><div class="container"><div class="footer-content" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:2rem;margin-bottom:2rem"><div><div style="font-weight:800;font-size:1.1rem;color:white;margin-bottom:0.5rem;">HELVETIA HIMALAYAS</div><p style="font-size:0.85rem;color:var(--text-secondary)">Consultancy Services — Digital solutions for modern businesses</p></div><div class="footer-links" style="display:flex;gap:3rem;flex-wrap:wrap"><div><a href="#home">Home</a><br><a href="#pricing">Pricing</a><br><a href="#custom">Custom Solutions</a></div><div><a href="#process">Process</a><br><a href="#contact">Contact</a><br><a href="#maintenance">Maintenance</a></div></div></div><div class="footer-bottom" style="text-align:center;padding-top:2rem;border-top:1px solid rgba(28,158,158,0.2)"><p>© 2026 Helvetia Himalayas Consultancy Services — Professional websites & web applications</p><p style="margin-top:0.5rem;font-size:0.75rem;color:var(--text-secondary)">Custom development | Ongoing support | Scalable solutions</p></div></div></footer>
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <div><div style="font-weight:800;font-size:1.1rem;color:white;margin-bottom:0.5rem;">HELVETIA HIMALAYAS</div><p style="font-size:0.85rem;color:var(--text-secondary)">Consultancy Services — Digital solutions for modern businesses</p></div>
+      <div class="footer-links"><div><a href="#home">Home</a><br><a href="#pricing">Pricing</a><br><a href="#custom">Custom Solutions</a></div><div><a href="#process">Process</a><br><a href="#contact">Contact</a><br><a href="#maintenance">Maintenance</a></div></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Helvetia Himalayas Consultancy Services — Professional websites & web applications</p><p style="margin-top:0.5rem;font-size:0.75rem;">Custom development | Ongoing support | Scalable solutions</p></div>
+  </div>
+</footer>
 
 <script>
+  // Create floating particles
   function createParticles() {
     const container = document.getElementById('particles');
+    if (!container) return;
     for (let i = 0; i < 50; i++) {
       const particle = document.createElement('div');
       particle.classList.add('particle');
@@ -941,9 +1015,13 @@
   }
   createParticles();
 
+  // Navbar scroll effect
   const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 20); });
-  
+  window.addEventListener('scroll', () => { 
+    if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 20); 
+  });
+
+  // Hamburger menu
   const hamburger = document.getElementById('hamburgerBtn');
   const navLinks = document.getElementById('navLinks');
   if (hamburger && navLinks) {
@@ -965,29 +1043,8 @@
     }));
   }
 
-  document.getElementById('consultForm')?.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const name = document.getElementById('name')?.value.trim();
-    const email = document.getElementById('email')?.value.trim();
-    const message = document.getElementById('message')?.value.trim();
-    if (!name || !email || !message) return alert('Please fill in name, email, and project details.');
-    if (!email.includes('@')) return alert('Please enter a valid email address.');
-    alert(`Thank you ${name}! We've received your inquiry and will respond within 24 hours.`);
-    this.reset();
-  });
-
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      const targetId = this.getAttribute('href');
-      if (targetId === "#" || targetId === "") return;
-      const target = document.querySelector(targetId);
-      if (target) { e.preventDefault(); window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' }); history.pushState(null, null, targetId); }
-    });
-  });
-
-   // Show success message when redirected back
-   if (window.location.search.includes('success=true')) {
-    // Create popup message
+  // Show success message when redirected back from form submission
+  if (window.location.search.includes('success=true')) {
     const popup = document.createElement('div');
     popup.innerHTML = `
       <div style="position: fixed; top: 100px; left: 50%; transform: translateX(-50%); z-index: 9999; background: linear-gradient(135deg, #0F6B6B, #1C9E9E); color: white; padding: 1rem 2rem; border-radius: 60px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 12px; animation: slideDown 0.5s ease;">
@@ -998,7 +1055,7 @@
     `;
     document.body.appendChild(popup);
     
-    // Remove success parameter from URL
+    // Remove success parameter from URL without refreshing page
     window.history.replaceState({}, document.title, window.location.pathname);
     
     // Auto remove after 6 seconds
@@ -1006,6 +1063,20 @@
       if (popup) popup.remove();
     }, 6000);
   }
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (targetId === "#" || targetId === "") return;
+      const target = document.querySelector(targetId);
+      if (target) {
+        e.preventDefault();
+        window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+        history.pushState(null, null, targetId);
+      }
+    });
+  });
 </script>
 </body>
 </html>
