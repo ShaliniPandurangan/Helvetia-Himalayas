@@ -584,6 +584,16 @@
       gap: 2rem;
       margin-top: 2rem;
     }
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
 
     .custom-item {
       text-align: center;
@@ -974,6 +984,28 @@
       if (target) { e.preventDefault(); window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' }); history.pushState(null, null, targetId); }
     });
   });
+
+   // Show success message when redirected back
+   if (window.location.search.includes('success=true')) {
+    // Create popup message
+    const popup = document.createElement('div');
+    popup.innerHTML = `
+      <div style="position: fixed; top: 100px; left: 50%; transform: translateX(-50%); z-index: 9999; background: linear-gradient(135deg, #0F6B6B, #1C9E9E); color: white; padding: 1rem 2rem; border-radius: 60px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 12px; animation: slideDown 0.5s ease;">
+        <span style="font-size: 1.5rem;">✓</span>
+        <span style="font-weight: 500;">Message sent successfully! We'll get back to you within 24 hours.</span>
+        <button onclick="this.parentElement.parentElement.remove()" style="background: rgba(255,255,255,0.2); border: none; color: white; cursor: pointer; padding: 4px 10px; border-radius: 30px; margin-left: 10px;">✕</button>
+      </div>
+    `;
+    document.body.appendChild(popup);
+    
+    // Remove success parameter from URL
+    window.history.replaceState({}, document.title, window.location.pathname);
+    
+    // Auto remove after 6 seconds
+    setTimeout(() => {
+      if (popup) popup.remove();
+    }, 6000);
+  }
 </script>
 </body>
 </html>
